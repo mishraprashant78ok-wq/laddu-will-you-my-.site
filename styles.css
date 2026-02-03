@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
 
 body {
     display: flex;
@@ -6,25 +6,27 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: white;
+    background: linear-gradient(180deg, #ffd1dc, #ffe6ee);
     font-family: "Nunito", sans-serif;
     flex-direction: column;
-  }
-  
-  .container {
+    overflow: hidden;
+}
+
+.container {
     text-align: center;
-  }
-  
-  h1 {
+    z-index: 10;
+}
+
+h1 {
     font-size: 2.5em;
     color: #d32f2f;
-  }
-  
-  .buttons {
+}
+
+.buttons {
     margin-top: 20px;
-  }
-  
-  .yes-button {
+}
+
+.yes-button {
     font-size: 1.5em;
     padding: 10px 20px;
     margin-right: 10px;
@@ -33,26 +35,74 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-  }
+}
 
-  .yes-button:hover{
-    background-color: #e03777;
-  }
-  
-  .no-button {
+.no-button {
     font-size: 1.5em;
     padding: 10px 20px;
     background-color: #d3d3d3;
-    color: black
-    ;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-  }
-  
-  .gif_container img {
+}
+
+.gif_container img {
     width: 300px;
-    height: auto;
-    border-radius: 10px;
     margin-top: 20px;
-  }
+    border-radius: 10px;
+}
+
+/* Hearts */
+.hearts {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+}
+
+.heart {
+    position: absolute;
+    bottom: -20px;
+    width: 18px;
+    height: 18px;
+    background: #ff4d6d;
+    transform: rotate(45deg);
+    animation: floatUp 8s linear infinite;
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: #ff4d6d;
+    border-radius: 50%;
+}
+
+.heart::before { top: -9px; left: 0; }
+.heart::after { left: -9px; top: 0; }
+
+@keyframes floatUp {
+    from { transform: translateY(0) rotate(45deg); opacity: 1; }
+    to { transform: translateY(-110vh) rotate(45deg); opacity: 0; }
+}
+
+/* Confetti */
+#confetti {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 999;
+}
+
+.confetti-piece {
+    position: absolute;
+    width: 10px;
+    height: 14px;
+    animation: popper 2.5s ease-out forwards;
+}
+
+@keyframes popper {
+    from { transform: translateY(0) rotate(0deg); opacity: 1; }
+    to { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
