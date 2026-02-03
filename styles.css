@@ -1,4 +1,4 @@
- @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
 
 body {
     display: flex;
@@ -52,7 +52,7 @@ h1 {
     border-radius: 10px;
 }
 
-/* Hearts */
+/* Floating Hearts */
 .hearts {
     position: fixed;
     inset: 0;
@@ -87,7 +87,7 @@ h1 {
     to { transform: translateY(-110vh) rotate(45deg); opacity: 0; }
 }
 
-/* Confetti */
+/* Fireworks / Confetti */
 #confetti {
     position: fixed;
     inset: 0;
@@ -106,3 +106,6 @@ h1 {
     from { transform: translateY(0) rotate(0deg); opacity: 1; }
     to { transform: translateY(100vh) rotate(720deg); opacity: 0; }
 }
+ 
+ 
+ 

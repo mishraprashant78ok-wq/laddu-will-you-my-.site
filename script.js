@@ -1,4 +1,4 @@
- const messages = [
+const messages = [
     "Are you sure?",
     "Really sure??",
     "Are you positive?",
@@ -12,20 +12,8 @@
 ];
 
 let messageIndex = 0;
-let musicStarted = false;
-
-function startMusic() {
-    if (!musicStarted) {
-        const music = document.getElementById("bgMusic");
-        music.volume = 0.4;
-        music.play();
-        musicStarted = true;
-    }
-}
 
 function handleNoClick() {
-    startMusic();
-
     const noButton = document.querySelector(".no-button");
     const yesButton = document.querySelector(".yes-button");
 
@@ -37,15 +25,14 @@ function handleNoClick() {
 }
 
 function handleYesClick() {
-    startMusic();
     celebrateYes();
 
     setTimeout(() => {
         window.location.href = "yes_page.html";
-    }, 1800);
+    }, 2000);
 }
 
-/* Hearts */
+/* Hearts generator (always running) */
 function createHeart() {
     const heart = document.createElement("div");
     heart.className = "heart";
@@ -56,12 +43,12 @@ function createHeart() {
 }
 setInterval(createHeart, 500);
 
-/* Confetti */
+/* Fireworks on YES */
 function celebrateYes() {
     const confetti = document.getElementById("confetti");
     const colors = ["#ff4d6d", "#ffd166", "#06d6a0", "#4cc9f0", "#c77dff"];
 
-    for (let i = 0; i < 120; i++) {
+    for (let i = 0; i < 150; i++) {
         const piece = document.createElement("div");
         piece.className = "confetti-piece";
         piece.style.left = Math.random() * 100 + "vw";
@@ -72,4 +59,7 @@ function celebrateYes() {
         setTimeout(() => piece.remove(), 3000);
     }
 }
-
+ 
+ 
+ 
+ 
