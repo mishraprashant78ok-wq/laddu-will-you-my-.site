@@ -1,3 +1,15 @@
+  /* MUSIC */
+let musicStarted = false;
+function startMusic() {
+    if (!musicStarted) {
+        const music = document.getElementById("bgMusic");
+        music.volume = 0.4;
+        music.play();
+        musicStarted = true;
+    }
+}
+
+/* NO BUTTON */
 const messages = [
     "Are you sure?",
     "Really sure??",
@@ -11,55 +23,84 @@ const messages = [
     "Just kidding, say yes please! ❤️"
 ];
 
-let messageIndex = 0;
+let msgIndex = 0;
 
 function handleNoClick() {
-    const noButton = document.querySelector(".no-button");
-    const yesButton = document.querySelector(".yes-button");
+    startMusic();
+    const noBtn = document.querySelector(".no-button");
+    const yesBtn = document.querySelector(".yes-button");
 
-    noButton.textContent = messages[messageIndex];
-    messageIndex = (messageIndex + 1) % messages.length;
+    noBtn.textContent = messages[msgIndex];
+    msgIndex = (msgIndex + 1) % messages.length;
 
-    const size = parseFloat(getComputedStyle(yesButton).fontSize);
-    yesButton.style.fontSize = `${size * 1.5}px`;
+    yesBtn.style.fontSize =
+        (parseFloat(getComputedStyle(yesBtn).fontSize) * 1.4) + "px";
 }
 
+/* YES BUTTON */
 function handleYesClick() {
-    celebrateYes();
-
+    startMusic();
+    launchFireworks();
     setTimeout(() => {
         window.location.href = "yes_page.html";
-    }, 2000);
+    }, 2200);
 }
 
-/* Hearts generator (always running) */
-function createHeart() {
+/* CONTINUOUS HEARTS */
+function spawnHeart() {
     const heart = document.createElement("div");
     heart.className = "heart";
     heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDuration = (6 + Math.random() * 4) + "s";
+    heart.style.animationDuration = (5 + Math.random() * 4) + "s";
     document.querySelector(".hearts").appendChild(heart);
-    setTimeout(() => heart.remove(), 10000);
+    setTimeout(() => heart.remove(), 9000);
 }
-setInterval(createHeart, 500);
+setInterval(spawnHeart, 300);
 
-/* Fireworks on YES */
-function celebrateYes() {
-    const confetti = document.getElementById("confetti");
-    const colors = ["#ff4d6d", "#ffd166", "#06d6a0", "#4cc9f0", "#c77dff"];
+/* REAL FIREWORKS */
+const canvas = document.getElementById("fireworks");
+const ctx = canvas.getContext("2d");
 
-    for (let i = 0; i < 150; i++) {
-        const piece = document.createElement("div");
-        piece.className = "confetti-piece";
-        piece.style.left = Math.random() * 100 + "vw";
-        piece.style.top = Math.random() * 20 + "vh";
-        piece.style.backgroundColor =
-            colors[Math.floor(Math.random() * colors.length)];
-        confetti.appendChild(piece);
-        setTimeout(() => piece.remove(), 3000);
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
+
+function launchFireworks() {
+    let particles = [];
+    const colors = ["#ff4d6d","#ffd166","#06d6a0","#4cc9f0","#c77dff"];
+
+    for (let i = 0; i < 220; i++) {
+        particles.push({
+            x: canvas.width / 2,
+            y: canvas.height / 2,
+            angle: Math.random() * Math.PI * 2,
+            speed: Math.random() * 6 + 2,
+            radius: Math.random() * 2 + 1,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            life: 100
+        });
     }
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        particles.forEach(p => {
+            p.x += Math.cos(p.angle) * p.speed;
+            p.y += Math.sin(p.angle) * p.speed;
+            p.life--;
+
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            ctx.fillStyle = p.color;
+            ctx.fill();
+        });
+
+        particles = particles.filter(p => p.life > 0);
+        if (particles.length) requestAnimationFrame(animate);
+    }
+
+    animate();
 }
- 
- 
- 
- 

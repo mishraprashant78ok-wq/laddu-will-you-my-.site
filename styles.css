@@ -1,20 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
 
 body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(180deg, #ffd1dc, #ffe6ee);
+    font-family: "Nunito", sans-serif;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
-    background: linear-gradient(180deg, #ffd1dc, #ffe6ee);
-    font-family: "Nunito", sans-serif;
-    flex-direction: column;
-    overflow: hidden;
 }
 
 .container {
     text-align: center;
-    z-index: 10;
+    z-index: 5;
 }
 
 h1 {
@@ -26,86 +25,70 @@ h1 {
     margin-top: 20px;
 }
 
-.yes-button {
+.yes-button,
+.no-button {
     font-size: 1.5em;
     padding: 10px 20px;
-    margin-right: 10px;
-    background-color: #fa0561;
-    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
+.yes-button {
+    background: #fa0561;
+    color: white;
+    margin-right: 10px;
+}
+
 .no-button {
-    font-size: 1.5em;
-    padding: 10px 20px;
-    background-color: #d3d3d3;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    background: #d3d3d3;
 }
 
 .gif_container img {
     width: 300px;
-    margin-top: 20px;
     border-radius: 10px;
 }
 
-/* Floating Hearts */
+/* HEARTS */
 .hearts {
     position: fixed;
     inset: 0;
     pointer-events: none;
+    z-index: 1;
 }
 
 .heart {
     position: absolute;
-    bottom: -20px;
-    width: 18px;
-    height: 18px;
+    bottom: -30px;
+    width: 20px;
+    height: 20px;
     background: #ff4d6d;
     transform: rotate(45deg);
-    animation: floatUp 8s linear infinite;
+    animation: rise linear forwards;
 }
 
 .heart::before,
 .heart::after {
     content: "";
     position: absolute;
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     background: #ff4d6d;
     border-radius: 50%;
 }
 
-.heart::before { top: -9px; left: 0; }
-.heart::after { left: -9px; top: 0; }
+.heart::before { top: -10px; left: 0; }
+.heart::after { left: -10px; top: 0; }
 
-@keyframes floatUp {
+@keyframes rise {
     from { transform: translateY(0) rotate(45deg); opacity: 1; }
-    to { transform: translateY(-110vh) rotate(45deg); opacity: 0; }
+    to { transform: translateY(-120vh) rotate(45deg); opacity: 0; }
 }
 
-/* Fireworks / Confetti */
-#confetti {
+/* FIREWORK CANVAS */
+#fireworks {
     position: fixed;
     inset: 0;
     pointer-events: none;
-    z-index: 999;
+    z-index: 10;
 }
-
-.confetti-piece {
-    position: absolute;
-    width: 10px;
-    height: 14px;
-    animation: popper 2.5s ease-out forwards;
-}
-
-@keyframes popper {
-    from { transform: translateY(0) rotate(0deg); opacity: 1; }
-    to { transform: translateY(100vh) rotate(720deg); opacity: 0; }
-}
- 
- 
- 

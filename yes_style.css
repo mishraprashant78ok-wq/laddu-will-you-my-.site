@@ -1,19 +1,17 @@
- @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
-
-body {
+  body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(180deg, #ffd1dc, #ffe6ee);
+    font-family: Nunito, sans-serif;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
-    background: linear-gradient(180deg, #ffd1dc, #ffe6ee);
-    font-family: "Nunito", sans-serif;
-    overflow: hidden;
 }
 
 .container {
     text-align: center;
-    z-index: 10;
+    z-index: 5;
 }
 
 .header_text {
@@ -24,4 +22,3 @@ body {
 .gif_container img {
     width: 300px;
 }
-
