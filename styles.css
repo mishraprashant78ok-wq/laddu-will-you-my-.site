@@ -3,7 +3,7 @@
 body {
     margin: 0;
     height: 100vh;
-    background: linear-gradient(180deg, #ffd1dc, #ffe6ee);
+    background: radial-gradient(circle at top, #ffe6ee, #ffd1dc);
     font-family: "Nunito", sans-serif;
     overflow: hidden;
     display: flex;
@@ -11,42 +11,83 @@ body {
     align-items: center;
 }
 
+/* MAIN CONTAINER */
 .container {
     text-align: center;
     z-index: 5;
 }
 
 h1 {
-    font-size: 2.5em;
-    color: #d32f2f;
+    font-size: 2.6em;
+    color: #c9184a;
 }
 
+/* BUTTON AREA */
 .buttons {
     margin-top: 20px;
+    position: relative;
+    height: 80px;
 }
 
-.yes-button,
-.no-button {
-    font-size: 1.5em;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.yes-button {
-    background: #fa0561;
-    color: white;
-    margin-right: 10px;
-}
-
-.no-button {
-    background: #d3d3d3;
-}
-
+/* GIF */
 .gif_container img {
-    width: 300px;
-    border-radius: 10px;
+    width: 280px;
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+}
+
+/* YES BUTTON — PULSE & GLOW (SIZE FIXED) */
+.yes-button {
+    background: linear-gradient(45deg, #ff4d6d, #ff758f);
+    color: white;
+    border: none;
+    font-size: 1.4em;
+    padding: 12px 26px;
+    border-radius: 30px;
+    cursor: pointer;
+    animation: yesPulse 1.6s infinite;
+}
+
+@keyframes yesPulse {
+    0% {
+        box-shadow: 0 0 10px rgba(255,77,109,0.4);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(255,77,109,0.9);
+        transform: scale(1.05);
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(255,77,109,0.4);
+        transform: scale(1);
+    }
+}
+
+/* NO BUTTON — STAYS IN PLACE */
+.no-button {
+    font-size: 1.3em;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    background: #ddd;
+    cursor: pointer;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* NO BUTTON SHAKE EFFECT */
+@keyframes shakeNo {
+    0% { transform: translateX(0); }
+    20% { transform: translateX(-6px); }
+    40% { transform: translateX(6px); }
+    60% { transform: translateX(-6px); }
+    80% { transform: translateX(6px); }
+    100% { transform: translateX(0); }
+}
+
+.no-button.shake {
+    animation: shakeNo 0.4s;
+    background: #ffb3c6;
+    box-shadow: 0 0 15px rgba(255, 77, 109, 0.6);
 }
 
 /* HEARTS */
@@ -60,10 +101,11 @@ h1 {
 .heart {
     position: absolute;
     bottom: -30px;
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     background: #ff4d6d;
     transform: rotate(45deg);
+    filter: drop-shadow(0 0 12px #ff758f);
     animation: rise linear forwards;
 }
 
@@ -71,22 +113,24 @@ h1 {
 .heart::after {
     content: "";
     position: absolute;
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     background: #ff4d6d;
     border-radius: 50%;
 }
 
-.heart::before { top: -10px; left: 0; }
-.heart::after { left: -10px; top: 0; }
+.heart::before { top: -11px; left: 0; }
+.heart::after  { left: -11px; top: 0; }
 
 @keyframes rise {
-    from { transform: translateY(0) rotate(45deg); opacity: 1; }
-    to { transform: translateY(-120vh) rotate(45deg); opacity: 0; }
+    to {
+        transform: translateY(-120vh) rotate(45deg);
+        opacity: 0;
+    }
 }
 
-/* FIREWORK CANVAS */
-#fireworks {
+/* CELEBRATION CANVAS */
+#celebration {
     position: fixed;
     inset: 0;
     pointer-events: none;

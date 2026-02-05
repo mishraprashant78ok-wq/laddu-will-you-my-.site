@@ -1,7 +1,7 @@
-  body {
+ body {
     margin: 0;
     height: 100vh;
-    background: linear-gradient(180deg, #ffd1dc, #ffe6ee);
+    background: radial-gradient(circle at top, #ffe6ee, #ffd1dc);
     font-family: Nunito, sans-serif;
     overflow: hidden;
     display: flex;
@@ -9,16 +9,61 @@
     align-items: center;
 }
 
+/* CONTENT */
 .container {
     text-align: center;
-    z-index: 5;
+    z-index: 2;
 }
 
-.header_text {
+h1 {
     font-size: 3em;
-    color: #d32f2f;
+    color: #c9184a;
 }
 
 .gif_container img {
     width: 300px;
+    border-radius: 25px;
+}
+
+/* ROSE PETALS */
+.petals {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.petals span {
+    position: absolute;
+    top: -10%;
+    width: 18px;
+    height: 18px;
+    background: radial-gradient(circle, #ff758f, #c9184a);
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(45deg);
+    animation: fall linear infinite;
+    opacity: 0.9;
+}
+
+/* Different positions, sizes & speeds */
+.petals span:nth-child(1) { left: 10%; animation-duration: 10s; }
+.petals span:nth-child(2) { left: 20%; animation-duration: 12s; transform: scale(0.8) rotate(45deg); }
+.petals span:nth-child(3) { left: 30%; animation-duration: 9s; }
+.petals span:nth-child(4) { left: 40%; animation-duration: 11s; transform: scale(1.1) rotate(45deg); }
+.petals span:nth-child(5) { left: 50%; animation-duration: 13s; }
+.petals span:nth-child(6) { left: 60%; animation-duration: 10s; transform: scale(0.9) rotate(45deg); }
+.petals span:nth-child(7) { left: 70%; animation-duration: 12s; }
+.petals span:nth-child(8) { left: 80%; animation-duration: 9s; transform: scale(1.2) rotate(45deg); }
+.petals span:nth-child(9) { left: 90%; animation-duration: 14s; }
+.petals span:nth-child(10){ left: 95%; animation-duration: 11s; }
+
+@keyframes fall {
+    0% {
+        top: -10%;
+        transform: translateX(0) rotate(0deg);
+    }
+    100% {
+        top: 110%;
+        transform: translateX(-40px) rotate(360deg);
+    }
 }
